@@ -77,8 +77,8 @@ O Next Level Week foi originada pela [@Rocketseat](https://rocketseat.com.br/), 
 a dar o próximo passo na evolução como dev. O NLW é uma semana prática com muito código, desafios e networking.
 
 Este projeto em específico faz parte da trilha de REACT ministrada por [@DiegoFernandes](https://github.com/diego3g), e sinceramente meus agradecimentos a 
-toda a equipe da @Rocketseat por passar todo esse conhecimento gratuítamente para todos, e recomendo a você deve leitor
-que procure o material dos cursos deles são todos realmente excelentes!
+toda a equipe da [@Rocketseat](https://rocketseat.com.br/) por passar todo esse conhecimento gratuítamente para todos, e recomendo a você DEV leitor
+que deem uma olhada no material dos cursos deles, todos são realmente excelentes!
 
 Continuando, a interface foi elaborada por [Tiago Luchtenberg](https://www.instagram.com/tiagoluchtenberg/) 
 utilizando a plataforma FIGMA, para acessar o projeto e ver o protótipo de interface basta acessar este 
