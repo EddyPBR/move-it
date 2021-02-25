@@ -59,6 +59,12 @@
   transition: background-color 0.2s;
 }
 
+.countdownButton svg {
+  width: 10px;
+  height: 10px;
+  margin-left: .5rem;
+}
+
 .countdownButton:not(:disabled):hover {
   background: var(--blue-dark);
 }
@@ -66,6 +72,11 @@
 .countdownButtonActive {
   background: var(--white);
   color: var(--title);
+}
+
+.countdownButtonActive svg {
+  width: 20px;
+  height: 20px;
 }
 
 .countdownButtonActive:not(:disabled):hover {
@@ -77,4 +88,12 @@
   background: var(--white);
   color: var(--text);
   cursor: not-allowed;
+
+  border-bottom: 4px solid var(--green);
+}
+
+.countdownButton:disabled svg {
+  width: 20px;
+  height: 20px;
+  color: var(--green);
 }
