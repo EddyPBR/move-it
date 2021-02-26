@@ -70,6 +70,7 @@
 
 .challengeActive main p {
   line-height: 1.5;
+  margin-bottom: 2rem;
 }
 
 .challengeActive footer {
@@ -106,4 +107,14 @@
 
 .challengeActive footer button:hover {
   filter: brightness(0.9);
+}
+
+@media (max-width: 1000px) {
+  .challengeActive main {
+    margin-top: 2rem;
+  }
+
+  .challengeActive footer {
+    margin: .5rem 0;
+  }
 }

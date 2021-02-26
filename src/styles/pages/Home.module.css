@@ -15,3 +15,32 @@
   align-content: center;
 }
 
+@media(max-width: 1000px) {
+  .container {
+    max-width: 620px;
+    width: 100%;
+  }
+
+  .container > section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-top: 6rem;
+  }
+}
+
+@media(max-width: 560px) {
+  .container {
+    max-width: 90vw;
+    padding: 2.5rem 0;
+  }
+
+  .container > section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-top: 6rem;
+  }
+}
