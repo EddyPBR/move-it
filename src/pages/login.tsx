@@ -25,7 +25,7 @@ export default function Login() {
           <form className={styles.formLogin}>
             <input type="text" placeholder="Digite seu username" />
             <button>
-              <FaArrowRight size={20} />
+              <FaArrowRight size={24} />
             </button>
           </form>
 
