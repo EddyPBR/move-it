@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/client";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 import { ChallengesContext } from "../contexts/ChallengesContext";
@@ -16,12 +16,12 @@ export function Profile() {
     <SkeletonTheme color="#dcdde0" highlightColor="#F0F0F0">
       <div className={styles.profileContainer}>
         {
-          loading
-          ? <Skeleton circle={true} height={80} width={80} duration={1.5} />
-          : <img src={session.user.image} alt={session.user.name} />
+          session
+          ? <img src={session.user.image} alt={session.user.name} />
+          : <Skeleton circle={true} height={80} width={80} duration={1.5} />
         }
         <div>
-          <strong>{loading ? <Skeleton width={100} duration={1.5} /> : session.user.name }</strong>
+          <strong>{session ? session.user.name : <Skeleton width={100} duration={1.5} />}</strong>
           <p>
             <img src="assets/icons/level.svg" alt="Level" />
             Level {level}
