@@ -1,5 +1,5 @@
 .container {
-  height: 100vh;
+  min-height: 100vh;
   max-width: 992px;
   margin: 0 auto;
   padding: 2.5rem 2rem;
@@ -19,6 +19,7 @@
   .container {
     max-width: 620px;
     width: 100%;
+    margin-bottom: 5rem;
   }
 
   .container > section {

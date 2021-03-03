@@ -9,6 +9,7 @@ import { Profile } from "../components/Profile";
 import { CompletedChallenges } from "../components/CompletedChallenges";
 import { Countdown } from "../components/Countdown";
 import { ChallengeBox } from "../components/ChallengeBox";
+import { Navbar } from "../components/Navbar";
 
 import styles from "../styles/pages/Home.module.css";
 
@@ -29,6 +30,8 @@ export default function Home(props: IHomeProps) {
         <Head>
           <title>Inicio | Move.it</title>
         </Head>
+
+        <Navbar />
 
         <ExperienceBar />
 

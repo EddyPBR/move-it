@@ -1,0 +1,154 @@
+.navbar {
+  height: 100vh;
+  width: 100vw;
+  max-width: 112px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background: var(--white);
+
+  padding: 2rem 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: crosshair;
+}
+
+.navbar div img {
+  width: 100%;
+  max-width: 2.375rem;
+  transition: transform 0.5s ease-in-out;
+}
+
+.navbar div:hover img {
+  transform: rotateY(180deg);
+}
+
+.navbar ul {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.navbar ul li {
+  list-style: none;
+  height: 3.5rem;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0.5rem 0;
+}
+
+.navbar ul li a {
+  width: 100%;
+
+  transition: color 0.2s, border 0.2s;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 4px solid transparent;
+}
+
+.navbar ul li a:hover {
+  color: var(--blue);
+  border-left: 4px solid var(--blue);
+}
+
+.navbar ul li a svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.navbar ul li a span {
+  margin-top: 4px;
+  font-weight: bold;
+  font-size: 0.775rem;
+}
+
+.navbar ul li:last-child a:hover {
+  color: var(--red);
+  border-left: 4px solid var(--red);
+}
+
+.navbar ul li:last-child a svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+@media (max-width: 1200px) {
+  .navbar {
+    height: 5rem;
+    width: 100vw;
+    max-width: 100%;
+
+    position: fixed;
+    top: auto;
+    left: 0;
+    bottom: 0;
+    padding: 1rem 2rem;
+
+    flex-direction: row;
+  }
+
+  .navbar div {
+    justify-content: center;
+    max-width: 4rem;
+  }
+
+  .navbar ul {
+    width: 100%;
+    flex-direction: row;
+    flex: auto;
+  }
+
+  .navbar ul li {
+    width: auto;
+
+    margin: 0.5rem 4rem;
+  }
+  
+  .navbar ul li a:hover {
+    color: var(--blue);
+    border-left: 4px solid transparent;
+    border-bottom: 4px solid var(--blue);
+  }
+
+  .navbar ul li:last-child a:hover {
+    color: var(--red);
+    border-left: 4px solid transparent;
+    border-bottom: 4px solid var(--red);
+  }
+}
+
+@media(max-width: 720px){
+  .navbar div {
+    display: none;
+  }
+}
+
+@media (max-width: 460px) {
+  .navbar ul li {
+    width: auto;
+    margin: 0.5rem 2rem;
+  }
+}
