@@ -33,7 +33,7 @@ export function Navbar() {
         </li>
 
         <li>
-          <button className={styles.logout} onClick={() => signOut}>
+          <button className={styles.logout} onClick={() => signOut()}>
             <AiOutlinePoweroff />
             <span>logout</span>
           </button>
