@@ -1,6 +1,5 @@
 import Link from "next/link";
-
-import { useState } from "react";
+import { signOut } from "next-auth/client";
 
 import { AiOutlineHome, AiOutlinePoweroff } from "react-icons/ai";
 import { GiRibbonMedal } from "react-icons/gi";
@@ -8,7 +7,6 @@ import { GiRibbonMedal } from "react-icons/gi";
 import styles from "../styles/components/Navbar.module.css";
 
 export function Navbar() {
-
   return (
     <nav className={styles.navbar}>
       <div>
@@ -35,10 +33,10 @@ export function Navbar() {
         </li>
 
         <li>
-          <a href="/auth/logout" className={styles.logout}>
+          <button className={styles.logout} onClick={() => signOut}>
             <AiOutlinePoweroff />
             <span>logout</span>
-          </a>
+          </button>
         </li>
       </ul>
     </nav>
