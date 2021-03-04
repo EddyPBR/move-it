@@ -8,7 +8,7 @@ import { FaGithub, FaArrowRight } from "react-icons/fa";
 import styles from "../styles/pages/Login.module.css";
 
 export default function Login() {
-  const [session, loading] = useSession();
+  const [session] = useSession();
 
   function Redirect({ to }) {
     const router = useRouter();
