@@ -12,7 +12,8 @@ const options = {
   secret: process.env.AUTH_SECRET,
   jwt: {
     secret: process.env.JWT_SECRET,
-  }
+  },
+  database: process.env.MONGODB_URI,
 };
 
 export default (request: NextApiRequest, response: NextApiResponse) =>
