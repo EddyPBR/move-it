@@ -2,7 +2,10 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useSession } from "next-auth/client";
 
+import api from "../services/api";
+
 import { Redirect } from "../utils/Redirect";
+import { useState } from "react";
 
 import { ChallengesProvider } from "../contexts/ChallengesContext";
 import { CountdownProvider } from "../contexts/CountdownContext";
@@ -27,6 +30,20 @@ export default function Home(props: IHomeProps) {
 
   if (!loading && !session) {
     return <Redirect to="/login" />;
+  }
+
+  if (!loading && session) {
+    api
+      .post(`/api/profile/`, {
+        name: session.user.name,
+        image: session.user.image,
+      })
+      .then(() => {
+        console.log("User registered");
+      })
+      .catch(() => {
+        console.log("User already registered");
+      });
   }
 
   return (
