@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 export async function mongooseConnection() {
-  if (mongoose.connection.readyState >= 1) return;
+  if (mongoose.connections[0].readyState) return;
 
-  return mongoose.connect(process.env.MONGODB_URI, {
+  await mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

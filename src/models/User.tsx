@@ -1,13 +1,14 @@
-import { Schema, Document, model } from "mongoose";
+import { Schema, Document, model, models } from "mongoose";
 
 export interface IUserSchema extends Document {
-  accessKey: string;
-  name: string;
-  image: string;
-  level: Number;
-  currentExp: Number;
-  nextLevelExp: Number;
-  challengesCompleted: Number;
+  accessKey?: string;
+  name?: string;
+  image?: string;
+  level?: Number;
+  currentExp?: Number;
+  nextLevelExp?: Number;
+  totalExp?: Number;
+  challengesCompleted?: Number;
 }
 
 const UserSchema = new Schema({
@@ -26,24 +27,24 @@ const UserSchema = new Schema({
   },
   level: {
     type: Number,
-    required: true,
-    default: 0,
+    default: 1,
   },
   currentExp: {
     type: Number,
-    required: true,
     default: 0,
   },
   nextLevelExp: {
     type: Number,
-    required: true,
+    default: 64,
+  },
+  totalExp: {
+    type: Number,
     default: 0,
   },
   challengesCompleted: {
     type: Number,
-    required: true,
     default: 0,
-  }
+  },
 });
 
-export default model<IUserSchema>("UserModel", UserSchema);
+export default models.UserModel || model<IUserSchema>("UserModel", UserSchema);
