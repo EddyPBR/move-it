@@ -1,5 +1,7 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
-export async function api(path: string): Promise<AxiosResponse<any>> {
-  return axios.get(path);
-}
+const api = axios.create({
+  baseURL: "http://localhost:3000",
+});
+
+export default api;
