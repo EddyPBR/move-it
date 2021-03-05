@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { mongooseConnection } from "../../database/database";
 
-import UserModel, { IUserSchema } from "../../models/User";
+import ProfileModel, { IProfileSchema } from "../../models/Profile";
 
 export default async (
   request: NextApiRequest,
@@ -19,31 +19,39 @@ export default async (
   }
 
   switch (method) {
-    case "POST":
-      const { accessKey, name, image }: IUserSchema = request.body;
+    case "POST": {
+      const { name, image }: IProfileSchema = request.body;
 
-      const userExists = await UserModel.findOne({ accessKey });
-      if (userExists) {
-        return response.status(403).json({ error: "User already registered" });
+      const profileExists = await ProfileModel.findOne({ name });
+      if (profileExists) {
+        return response
+          .status(202)
+          .json({ error: "Profile already registered" });
       }
 
       try {
-        const user: IUserSchema = await UserModel.create({
-          accessKey,
+        const profile: IProfileSchema = await ProfileModel.create({
           name,
           image,
+          level: 1,
+          currentExp: 0,
+          nextLevelExp: 64,
+          totalExp: 0,
+          challengesCompleted: 0,
         });
 
-        return response.status(200).json(user);
+        return response.status(200).json(profile);
       } catch (error) {
         return response.status(400).json({
           error: error?._message || "Failed to create a user",
         });
       }
+    }
 
-    default:
+    default: {
       return response.status(404).json({
         error: "Route not found",
       });
+    }
   }
 };

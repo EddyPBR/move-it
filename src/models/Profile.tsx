@@ -1,22 +1,16 @@
 import { Schema, Document, model, models } from "mongoose";
 
-export interface IUserSchema extends Document {
-  accessKey?: string;
-  name?: string;
-  image?: string;
-  level?: Number;
-  currentExp?: Number;
-  nextLevelExp?: Number;
-  totalExp?: Number;
-  challengesCompleted?: Number;
+export interface IProfileSchema extends Document {
+  name: string;
+  image: string;
+  level: Number;
+  currentExp: Number;
+  nextLevelExp: Number;
+  totalExp: Number;
+  challengesCompleted: Number;
 }
 
-const UserSchema = new Schema({
-  accessKey: {
-    type: String,
-    unique: true,
-    required: true,
-  },
+const ProfileSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -27,24 +21,30 @@ const UserSchema = new Schema({
   },
   level: {
     type: Number,
+    required: true,
     default: 1,
   },
   currentExp: {
     type: Number,
+    required: true,
     default: 0,
   },
   nextLevelExp: {
     type: Number,
+    required: true,
     default: 64,
   },
   totalExp: {
     type: Number,
+    required: true,
     default: 0,
   },
   challengesCompleted: {
     type: Number,
+    required: true,
     default: 0,
   },
 });
 
-export default models.UserModel || model<IUserSchema>("UserModel", UserSchema);
+export default models.Profile ||
+  model<IProfileSchema>("Profile", ProfileSchema);
