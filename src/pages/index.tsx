@@ -1,9 +1,8 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { useSession } from "next-auth/client";
 
-import { useEffect } from "react";
+import { Redirect } from "../utils/Redirect";
 
 import { ChallengesProvider } from "../contexts/ChallengesContext";
 import { CountdownProvider } from "../contexts/CountdownContext";
@@ -26,20 +25,10 @@ interface IHomeProps {
 export default function Home(props: IHomeProps) {
   const [session, loading] = useSession();
 
-  function Redirect({ to }) {
-    const router = useRouter();
-  
-    useEffect(() => {
-      router.push(to);
-    }, [to]);
-  
-    return null;
-  }
-
   if (!loading && !session) {
     return <Redirect to="/login" />;
   }
-  
+
   return (
     <ChallengesProvider
       level={props.level}

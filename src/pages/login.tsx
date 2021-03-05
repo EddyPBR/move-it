@@ -1,8 +1,7 @@
 import { signIn, useSession } from "next-auth/client";
-import { useRouter } from "next/router";
 import Head from "next/head";
 
-import { useEffect, MouseEvent } from "react";
+import { Redirect } from "../utils/Redirect";
 import { FaGithub, FaArrowRight } from "react-icons/fa";
 
 import styles from "../styles/pages/Login.module.css";
@@ -10,17 +9,7 @@ import styles from "../styles/pages/Login.module.css";
 export default function Login() {
   const [session] = useSession();
 
-  function Redirect({ to }) {
-    const router = useRouter();
-  
-    useEffect(() => {
-      router.push(to);
-    }, [to]);
-  
-    return null;
-  }
-
-  function handleAuthGithub(event: MouseEvent<HTMLElement>): void {
+  function handleAuthGithub(event: React.MouseEvent<HTMLElement>): void {
     event.preventDefault();
     signIn("github");
   }
@@ -43,7 +32,9 @@ export default function Login() {
 
           <div>
             <FaGithub size={40} />
-            <a href="/auth/github" onClick={handleAuthGithub}>Clique aqui e registre-se com seu Github</a>
+            <a href="/auth/github" onClick={handleAuthGithub}>
+              Clique aqui e registre-se com seu Github
+            </a>
           </div>
 
           <form className={styles.formLogin}>
