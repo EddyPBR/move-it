@@ -1,7 +1,6 @@
 import { Schema, Document, model, models } from "mongoose";
 
 export interface IProfileSchema extends Document {
-  userId: Number;
   githubId: Number;
   login: string;
   name: string;
@@ -14,11 +13,6 @@ export interface IProfileSchema extends Document {
 }
 
 const ProfileSchema = new Schema({
-  userId: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
   githubId: {
     type: Number,
     required: true,

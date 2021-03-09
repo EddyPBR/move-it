@@ -21,7 +21,6 @@ export default async (
   switch (method) {
     case "POST": {
       const {
-        userId,
         githubId,
         login,
         name,
@@ -37,7 +36,6 @@ export default async (
 
       try {
         const profile: IProfileSchema = await ProfileModel.create({
-          userId,
           githubId,
           login,
           name,

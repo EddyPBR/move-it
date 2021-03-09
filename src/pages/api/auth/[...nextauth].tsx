@@ -18,8 +18,6 @@ const options = {
   database: process.env.MONGODB_URI,
   callbacks: {
     async signIn(user, account, profile) {
-      const userId = user.id as number;
-
       const { login, id, avatar_url, name } = profile as {
         login: string;
         id: number;
@@ -28,7 +26,6 @@ const options = {
       };
 
       const profilePayload = {
-        userId: userId,
         githubId: id,
         login: login,
         name: name,
