@@ -39,9 +39,6 @@ const options = {
 
       return true;
     },
-    async redirect(url: string, baseUrl: string) {
-      return baseUrl;
-    },
   },
 };
 

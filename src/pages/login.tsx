@@ -11,7 +11,7 @@ export default function Login() {
 
   function handleAuthGithub(event: React.MouseEvent<HTMLElement>): void {
     event.preventDefault();
-    signIn("github");
+    signIn("github", {redirect: true, callbackUrl: `${process.env.BASE_URL}`});
   }
 
   if (session) {

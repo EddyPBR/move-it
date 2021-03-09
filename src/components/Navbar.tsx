@@ -7,6 +7,7 @@ import { GiRibbonMedal } from "react-icons/gi";
 import styles from "../styles/components/Navbar.module.css";
 
 export function Navbar() {
+
   return (
     <nav className={styles.navbar}>
       <div>
@@ -33,7 +34,7 @@ export function Navbar() {
         </li>
 
         <li>
-          <button className={styles.logout} onClick={() => signOut()}>
+          <button className={styles.logout} onClick={() => signOut({redirect: true, callbackUrl: `${process.env.BASE_URL}/login` })}>
             <AiOutlinePoweroff />
             <span>logout</span>
           </button>
