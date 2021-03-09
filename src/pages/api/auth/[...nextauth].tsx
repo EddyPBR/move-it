@@ -19,7 +19,7 @@ const options = {
   callbacks: {
     async signIn(user, account, profile) {
       const userId = user.id as number;
-      
+
       const { login, id, avatar_url, name } = profile as {
         login: string;
         id: number;
@@ -38,6 +38,9 @@ const options = {
       await api.post("/api/profile", profilePayload);
 
       return true;
+    },
+    async redirect(url: string, baseUrl: string) {
+      return baseUrl;
     },
   },
 };
