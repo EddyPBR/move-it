@@ -20,7 +20,13 @@ export default async (
 
   switch (method) {
     case "POST": {
-      const { name, image }: IProfileSchema = request.body;
+      const {
+        userId,
+        githubId,
+        login,
+        name,
+        image,
+      }: IProfileSchema = request.body;
 
       const profileExists = await ProfileModel.findOne({ name });
       if (profileExists) {
@@ -31,6 +37,9 @@ export default async (
 
       try {
         const profile: IProfileSchema = await ProfileModel.create({
+          userId,
+          githubId,
+          login,
           name,
           image,
           level: 1,
