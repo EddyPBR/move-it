@@ -36,6 +36,11 @@ const options = {
 
       return true;
     },
+    async session(session, token) {
+      const githubId = Number(token.image.split("/")[4].split("?")[0]); // need remove it
+      session.githubId = githubId
+      return session;
+    }
   },
 };
 
