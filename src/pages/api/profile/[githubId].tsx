@@ -33,6 +33,24 @@ export default async (
           error: error?._message || "Failed to search a user",
         });
       }
+      break;
+    }
+
+    case "PUT": {
+      const githubId = request.query;
+
+      const {
+        level,
+        currentExperience,
+        totalExperience,
+      }: IProfileSchema = request.body;
+
+      try {
+        const profile = await ProfileModel.findOneAndUpdate(githubId, request.body);
+        return response.status(202).json(profile);
+      } catch (error) {
+        return response.status(400).json({ error: error?._message || "Failed to update a profile" });
+      }
     }
 
     default: {
