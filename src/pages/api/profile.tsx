@@ -41,9 +41,8 @@ export default async (
           name,
           image,
           level: 1,
-          currentExp: 0,
-          nextLevelExp: 64,
-          totalExp: 0,
+          currentExperience: 0,
+          totalExperience: 0,
           challengesCompleted: 0,
         });
 

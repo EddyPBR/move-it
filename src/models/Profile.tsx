@@ -1,15 +1,14 @@
 import { Schema, Document, model, models } from "mongoose";
 
 export interface IProfileSchema extends Document {
-  githubId: Number;
+  githubId: number;
   login: string;
   name: string;
   image: string;
-  level: Number;
-  currentExp: Number;
-  nextLevelExp: Number;
-  totalExp: Number;
-  challengesCompleted: Number;
+  level: number;
+  currentExperience: number;
+  totalExperience: number;
+  challengesCompleted: number;
 }
 
 const ProfileSchema = new Schema({
@@ -36,17 +35,12 @@ const ProfileSchema = new Schema({
     required: true,
     default: 1,
   },
-  currentExp: {
+  currentExperience: {
     type: Number,
     required: true,
-    default: 0,
+    default: 1,
   },
-  nextLevelExp: {
-    type: Number,
-    required: true,
-    default: 64,
-  },
-  totalExp: {
+  totalExperience: {
     type: Number,
     required: true,
     default: 0,

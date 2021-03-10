@@ -1,5 +1,9 @@
+import { useSession } from "next-auth/client";
+
 import { createContext, useState, useEffect, ReactNode } from "react";
 import Cookies from "js-cookie";
+
+import api from "../services/api";
 
 import { LevelUpModal } from "../components/LevelUpModal";
 
@@ -31,12 +35,25 @@ interface IChallengesContextData {
   closeLevelUpModal: () => void;
 }
 
+export interface IProfileSchema {
+  githubId: number;
+  login: string;
+  name: string;
+  image: string;
+  level: number;
+  currentExperience: number;
+  totalExperience: number;
+  challengesCompleted: number;
+}
+
 export const ChallengesContext = createContext({} as IChallengesContextData);
 
 export function ChallengesProvider({
   children,
   ...rest
 }: IChallengesProviderProps) {
+  const [session, loading] = useSession();
+
   const [level, setLevel] = useState(rest.level ?? 1);
   const [currentExperience, setCurrentExperience] = useState(
     rest.currentExperience ?? 0
@@ -55,10 +72,18 @@ export function ChallengesProvider({
   }, []);
 
   useEffect(() => {
-    Cookies.set("level", String(level));
-    Cookies.set("currentExperience", String(currentExperience));
-    Cookies.set("challengesCompleted", String(challengesCompleted));
-  }, [level, currentExperience, challengesCompleted]);
+    if(!loading) {
+      api
+      .get(`/api/profile/${session?.githubId}`)
+      .then((response) => {
+        const { level, currentExperience, challengesCompleted } = response.data as IProfileSchema;
+        setLevel(level);
+        setCurrentExperience(currentExperience);
+        setChallengesCompleted(challengesCompleted);
+      })
+      .catch((error) => console.log(error));
+    }
+  }, [session, loading]);
 
   function levelUp() {
     setLevel(level + 1);
@@ -88,6 +113,14 @@ export function ChallengesProvider({
     setActiveChallenge(null);
   }
 
+  function saveOnDatabase(level: number, currentExperience: number, totalExperience: number): void {
+    api.put(`/api/profile/${session?.githubId}`, {
+      level: level + 1,
+      currentExperience,
+      totalExperience
+    })
+  }
+
   function completeChallenge() {
     if (!activeChallenge) {
       return;
@@ -95,7 +128,9 @@ export function ChallengesProvider({
 
     const { amount } = activeChallenge;
 
-    let finalExperience = currentExperience + amount;
+    const totalExperience: number = currentExperience + amount;
+    let finalExperience: number = currentExperience + amount;
+    
 
     if (finalExperience >= experienceToNextLevel) {
       finalExperience = finalExperience - experienceToNextLevel;
@@ -105,6 +140,8 @@ export function ChallengesProvider({
     setCurrentExperience(finalExperience);
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1);
+
+    saveOnDatabase(level, finalExperience, totalExperience);
   }
 
   return (
