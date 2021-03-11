@@ -46,7 +46,7 @@ export default async (
       }: IProfileSchema = request.body;
 
       try {
-        const profile = await ProfileModel.findOneAndUpdate( { githubId: githubId }, { level: level, currentExperience: currentExperience, totalExperience, total Experience });
+        const profile = await ProfileModel.findOneAndUpdate( { githubId: githubId }, { level: level, currentExperience: currentExperience, totalExperience: totalExperience });
         return response.status(202).json(profile);
       } catch (error) {
         return response.status(400).json({ error: error?._message || "Failed to update a profile" });
