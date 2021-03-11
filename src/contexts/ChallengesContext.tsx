@@ -71,16 +71,20 @@ export function ChallengesProvider({
   }, []);
 
   useEffect(() => {
-    if(!loading) {
+    if (!loading) {
       api
-      .get(`/api/profile/${session?.githubId}`)
-      .then((response) => {
-        const { level, currentExperience, challengesCompleted } = response.data as IProfileSchema;
-        setLevel(level);
-        setCurrentExperience(currentExperience);
-        setChallengesCompleted(challengesCompleted);
-      })
-      .catch(() => console.warn("Error to load profile data"));
+        .get(`/api/profile/${session?.githubId}`)
+        .then((response) => {
+          const {
+            level,
+            currentExperience,
+            challengesCompleted,
+          } = response.data as IProfileSchema;
+          setLevel(level);
+          setCurrentExperience(currentExperience);
+          setChallengesCompleted(challengesCompleted);
+        })
+        .catch(() => console.warn("Error to load profile data"));
     }
   }, [session, loading]);
 
@@ -112,12 +116,18 @@ export function ChallengesProvider({
     setActiveChallenge(null);
   }
 
-  function saveOnDatabase(level: number, currentExperience: number, totalExperience: number): void {
+  function saveOnDatabase(
+    level: number,
+    currentExperience: number,
+    totalExperience: number,
+    challengesCompleted: number
+  ): void {
     api.put(`/api/profile/${session?.githubId}`, {
       level: level + 1,
       currentExperience,
-      totalExperience
-    })
+      totalExperience,
+      challengesCompleted: challengesCompleted + 1,
+    }).catch(() => console.warn("Error:", "Error to update profile" ));
   }
 
   function completeChallenge() {
@@ -129,7 +139,6 @@ export function ChallengesProvider({
 
     const totalExperience: number = currentExperience + amount;
     let finalExperience: number = currentExperience + amount;
-    
 
     if (finalExperience >= experienceToNextLevel) {
       finalExperience = finalExperience - experienceToNextLevel;
@@ -139,7 +148,12 @@ export function ChallengesProvider({
     setCurrentExperience(finalExperience);
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1);
-    saveOnDatabase(level, finalExperience, totalExperience);
+    saveOnDatabase(
+      level,
+      finalExperience,
+      totalExperience,
+      challengesCompleted
+    );
   }
 
   return (
@@ -154,11 +168,11 @@ export function ChallengesProvider({
         startNewChallenge,
         resetChallenge,
         completeChallenge,
-        closeLevelUpModal
+        closeLevelUpModal,
       }}
     >
       {children}
-      { isLevelUpModalOpen && <LevelUpModal /> }
+      {isLevelUpModalOpen && <LevelUpModal />}
     </ChallengesContext.Provider>
   );
 }

@@ -50,7 +50,12 @@ export default async (
         level,
         currentExperience,
         totalExperience,
+        challengesCompleted
       }: IProfileSchema = request.body;
+
+      if(!level || !currentExperience || !totalExperience || !challengesCompleted ) {
+        return response.status(400).json({ error: "Missing body params" });
+      }
 
       try {
         //@ts-ignore
@@ -60,6 +65,7 @@ export default async (
             level,
             currentExperience,
             totalExperience,
+            challengesCompleted
           },
           {
             new: true,
