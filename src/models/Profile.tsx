@@ -50,6 +50,9 @@ const ProfileSchema = new Schema({
     required: true,
     default: 0,
   },
+}).pre<IProfileSchema>("save", function (next) {
+  const profile = this;
+  next();
 });
 
 export default models.Profile ||
