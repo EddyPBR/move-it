@@ -1,7 +1,6 @@
 import { useSession } from "next-auth/client";
 
 import { createContext, useState, useEffect, ReactNode } from "react";
-import Cookies from "js-cookie";
 
 import api from "../services/api";
 
@@ -81,7 +80,7 @@ export function ChallengesProvider({
         setCurrentExperience(currentExperience);
         setChallengesCompleted(challengesCompleted);
       })
-      .catch((error) => console.log(error));
+      .catch(() => console.warn("Error to load profile data"));
     }
   }, [session, loading]);
 
@@ -140,7 +139,6 @@ export function ChallengesProvider({
     setCurrentExperience(finalExperience);
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1);
-
     saveOnDatabase(level, finalExperience, totalExperience);
   }
 

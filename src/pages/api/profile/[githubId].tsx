@@ -20,10 +20,14 @@ export default async (
 
   switch (method) {
     case "GET": {
-      const githubId = request.query;
+      const githubId = request.query.githubId as string;
+
+      if(!githubId) {
+        return response.status(400).json({ error: "Missing query params" });
+      }
 
       try {
-        const profile = await ProfileModel.findOne(githubId);
+        const profile = await ProfileModel.findOne({ githubId: Number(githubId) });
 
         return profile
           ? response.status(200).json(profile)
@@ -33,11 +37,14 @@ export default async (
           error: error?._message || "Failed to search a user",
         });
       }
-      break;
     }
 
     case "PUT": {
-      const githubId = request.query;
+      const githubId = request.query.githubId as string;
+
+      if(!githubId) {
+        return response.status(400).json({ error: "Missing query params" });
+      }
 
       const {
         level,
@@ -46,10 +53,26 @@ export default async (
       }: IProfileSchema = request.body;
 
       try {
-        const profile = await ProfileModel.findOneAndUpdate( { githubId: githubId }, { level: level, currentExperience: currentExperience, totalExperience: totalExperience });
-        return response.status(202).json(profile);
+        //@ts-ignore
+        const profile = await ProfileModel.findOneAndUpdate(
+          { githubId: Number(githubId) },
+          {
+            level,
+            currentExperience,
+            totalExperience,
+          },
+          {
+            new: true,
+          }
+        );
+
+        return profile
+          ? response.status(202).json(profile)
+          : response.status(404).json({ error: "Profile not found" });
       } catch (error) {
-        return response.status(400).json({ error: error?._message || "Failed to update a profile" });
+        return response
+          .status(400)
+          .json({ error: error?._message || "Failed to update a profile" });
       }
     }
 

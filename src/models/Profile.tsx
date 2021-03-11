@@ -38,7 +38,7 @@ const ProfileSchema = new Schema({
   currentExperience: {
     type: Number,
     required: true,
-    default: 1,
+    default: 0,
   },
   totalExperience: {
     type: Number,
@@ -50,9 +50,6 @@ const ProfileSchema = new Schema({
     required: true,
     default: 0,
   },
-}).pre<IProfileSchema>("save", function (next) {
-  const profile = this;
-  next();
 });
 
 export default models.Profile ||
