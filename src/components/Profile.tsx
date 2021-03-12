@@ -15,22 +15,27 @@ export function Profile() {
   return (
     <SkeletonTheme color="#dcdde0" highlightColor="#F0F0F0">
       <div className={styles.profileContainer}>
-        {session ? (
-          <img src={session.user.image} alt={session.user.name} />
-        ) : (
-          <Skeleton circle={true} height={80} width={80} duration={1.5} />
-        )}
+        {
+          session 
+            ? (<img src={session.user.image} alt={session.user.name} />) 
+            : (<Skeleton circle={true} height={88} width={88} duration={1.5} />)
+        }
         <div>
           <strong>
-            {session ? (
-              session.user.name
-            ) : (
-              <Skeleton width={100} duration={1.5} />
-            )}
+            {
+              session 
+                ? (session.user.name) 
+                : (<Skeleton width={100} duration={1.5} />)
+            }
           </strong>
           <p>
             <img src="assets/icons/level.svg" alt="Level" />
-            Level {level}
+            Level {" "}
+            {
+              session
+                ? (level)
+                : (<Skeleton width={20} duration={1.5} />)
+            }
           </p>
         </div>
       </div>
