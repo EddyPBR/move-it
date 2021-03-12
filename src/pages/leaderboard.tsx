@@ -63,42 +63,6 @@ export default function Login() {
               />
             </li>
           ))}
-          {leaderboard.map((leaderboard, index) => (
-            <li key={index}>
-              <Rank
-                position={index + 1}
-                name={leaderboard.name}
-                imageUrl={leaderboard.image}
-                level={leaderboard.level}
-                challengesCompleted={leaderboard.challengesCompleted}
-                totalExperience={leaderboard.totalExperience}
-              />
-            </li>
-          ))}
-          {leaderboard.map((leaderboard, index) => (
-            <li key={index}>
-              <Rank
-                position={index + 1}
-                name={leaderboard.name}
-                imageUrl={leaderboard.image}
-                level={leaderboard.level}
-                challengesCompleted={leaderboard.challengesCompleted}
-                totalExperience={leaderboard.totalExperience}
-              />
-            </li>
-          ))}
-          {leaderboard.map((leaderboard, index) => (
-            <li key={index}>
-              <Rank
-                position={index + 1}
-                name={leaderboard.name}
-                imageUrl={leaderboard.image}
-                level={leaderboard.level}
-                challengesCompleted={leaderboard.challengesCompleted}
-                totalExperience={leaderboard.totalExperience}
-              />
-            </li>
-          ))}
         </ul>
       </div>
     </div>
