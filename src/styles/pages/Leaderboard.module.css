@@ -1,0 +1,42 @@
+.container {
+  width: 90vw;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.container h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 2.25rem;
+  color: var(--title);
+  margin: 40px 0px;
+}
+
+.container .leaderboard {
+  height: 70vh;
+  overflow-y: scroll;
+}
+
+.leaderboard::-webkit-scrollbar {
+  width: 4px;
+}
+
+.leaderboard::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.leaderboard::-webkit-scrollbar-thumb {
+  background: var(--blue);
+  height: 8px;
+}
+
+.leaderboard::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-dark);
+}
+
+.container .leaderboard ul {
+  list-style: none;
+}
+
+.container .leaderboard li {
+  margin-bottom: 8px;
+}
