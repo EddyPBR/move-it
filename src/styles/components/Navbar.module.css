@@ -142,7 +142,7 @@
     border-bottom: 4px solid var(--blue);
   }
 
-  .navbar ul li:last-child a:hover {
+  .navbar ul li:last-child button:hover {
     color: var(--red);
     border-left: 4px solid transparent;
     border-bottom: 4px solid var(--red);
