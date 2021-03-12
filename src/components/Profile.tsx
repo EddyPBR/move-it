@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/client";
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 import { ChallengesContext } from "../contexts/ChallengesContext";
@@ -10,7 +10,7 @@ import styles from "../styles/components/Profile.module.css";
 export function Profile() {
   const { level } = useContext(ChallengesContext);
 
-  const [session, loading] = useSession();
+  const [session] = useSession();
 
   return (
     <SkeletonTheme color="#dcdde0" highlightColor="#F0F0F0">

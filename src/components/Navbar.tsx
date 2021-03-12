@@ -25,7 +25,7 @@ export function Navbar() {
         </li>
 
         <li>
-          <Link href="/rank">
+          <Link href="/leaderboard">
             <a>
               <GiRibbonMedal />
               <span>rank</span>
