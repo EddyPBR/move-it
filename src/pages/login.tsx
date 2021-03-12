@@ -33,16 +33,9 @@ export default function Login() {
           <div>
             <FaGithub size={40} />
             <a href="/auth/github" onClick={handleAuthGithub}>
-              Clique aqui e registre-se com seu Github
+              Clique aqui e faça login com o Github
             </a>
           </div>
-
-          <form className={styles.formLogin}>
-            <input type="text" placeholder="Digite seu username" />
-            <button>
-              <FaArrowRight size={24} />
-            </button>
-          </form>
         </main>
       </div>
     </div>
